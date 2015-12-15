@@ -1,0 +1,30 @@
+<!doctype html>
+<html ng-app="simpleContent">
+	<head>
+		<title>Simple Content</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	</head>
+	<body ng-controller="MainCtrl">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-4" ui-view="categories">
+
+                </div>
+                <div class="col-sm-8" ui-view="properties">
+
+                </div>
+            </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js"></script>
+        <script src="http://code.angularjs.org/1.2.13/angular.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+
+        <script src="app/app.js"></script>
+        <script src="app/categories/categories.js"></script>
+        <script src="app/categories/properties/properties.js"></script>
+        <script src="app/categories/properties/create/properties-create.js"></script>
+        <script src="app/categories/properties/edit/properties-edit.js"></script>
+        <script src="app/common/models/categories-model.js"></script>
+        <script src="app/common/models/properties-model.js"></script>
+	</body>
+</html>

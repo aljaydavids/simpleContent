@@ -1,0 +1,23 @@
+<div ng-if="shouldShowCreating()">
+    <button type="button" class="btn btn-link" ng-click="startCreating()">
+        <span class="glyphicon glyphicon-plus"></span>
+        Create property
+    </button>
+    <form class="create-form" ng-show="isCreating" role="form" ng-submit="createProperty(newProperty)" novalidate>
+        <div class="form-group">
+            <label for="newPropertyName">Property name</label>
+            <input type="text" class="form-control" id="newPropertyName" ng-model="newProperty.name" placeholder="Enter property name">
+        </div>
+        <div class="form-group">
+            <label for="newPropertyValue">Property value</label>
+            <input type="text" class="form-control" id="newPropertyValue" ng-model="newProperty.value" placeholder="Enter property value">
+        </div>
+
+        <button type="submit" class="btn btn-link">Create property</button>
+
+        <button type="button" class="btn btn-link" ng-click="cancelCreating()">
+            <span class="glyphicon glyphicon-stop"></span>
+            Cancel creating
+        </button>
+    </form>
+</div>
