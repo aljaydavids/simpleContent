@@ -13,14 +13,25 @@ angular.module('categories.properties', [
             url: 'categories/:category',
             views: {
                 'properties@': {
-                    controller: 'PropertiesCtrl',
+                    controller: 'PropertiesListCtrl as propertiesListCtrl',
                     templateUrl: 'app/categories/properties/properties.tmpl.html'
                 }
             }
         })
 })
-.controller('PropertiesCtrl', function($scope, $stateParams) {
-    $scope.CurrentCategoryName = $stateParams.category;
-})
+.controller('PropertiesListCtrl', function ($stateParams, PropertiesModel, CategoriesModel) {
+    var propertiesListCtrl =  this;
 
+    CategoriesModel.setCurrentCategory($stateParams.category);
+
+    PropertiesModel.getProperties()
+        .then(function(properties) {
+            propertiesListCtrl.properties = properties;
+        });
+
+    propertiesListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
+    propertiesListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
+    propertiesListCtrl.getCurrentCategoryId = CategoriesModel.getCurrentCategoryId;
+    propertiesListCtrl.deleteProperty = PropertiesModel.deleteProperty;
+})
 ;

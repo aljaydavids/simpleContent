@@ -1,0 +1,6 @@
+[
+  {"id": 0, "name": "about_us", "value": "About Us", "category_id": 0},
+  {"id": 1, "name": "terms_and_conditions", "value": "Terms and Conditions", "category_id": 1},
+  {"id": 2, "name": "about_us_link", "value": "http://www.example.com/about", "category_id": 2},
+  {"id": 3, "name": "random_thing", "value": "This is a random thingy", "category_id": 3}
+]

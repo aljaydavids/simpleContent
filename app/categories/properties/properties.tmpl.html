@@ -1,53 +1,24 @@
-<h1>{{ CurrentCategoryName }}</h1>
-
+<h1>{{ propertiesListCtrl.getCurrentCategoryName() }}</h1>
 <ul class="nav nav-pills nav-stacked">
-    <li ng-class="{'active':isSelectedProperty(property.id)}" ng-repeat="property in properties | filter:{category_id:currentCategory.id}">
-        <button type="button" class="close" ng-click="deleteProperty(property)">&times;</button>
-        <button type="button" class="btn btn-link" ng-click="setEditedProperty(property);startEditing()"><span class="glyphicon glyphicon-pencil"></span></button>
+    <li ng-class="{'active':isSelectedProperty(property.id)}"
+        ng-repeat="property in propertiesListCtrl.properties | filter:{category_id:propertiesListCtrl.getCurrentCategoryId() }">
+
+        <button type="button" class="close" ng-click="propertiesListCtrl.deleteProperty(property)">&times;</button>
+        <button type="button" class="btn btn-link"
+                ui-sref="categories.properties.edit({propertyId:property.id})">
+            <span class="glyphicon glyphicon-pencil"></span>
+        </button>
         <p>{{ property.name }}: {{ property.value }}</p>
     </li>
 </ul>
 
-<div ng-if="shouldShowCreating()">
-    <button type="button" class="btn btn-link" ng-click="startCreating()">
-        <span class="glyphicon glyphicon-plus"></span>
-        Create property
-    </button>
-    <form class="create-form" ng-show="isCreating" role="form" ng-submit="createProperty(newProperty)" novalidate>
-        <div class="form-group">
-            <label for="newPropertyName">Property name</label>
-            <input type="text" class="form-control" id="newPropertyName" ng-model="newProperty.name" placeholder="Enter property name">
-        </div>
-        <div class="form-group">
-            <label for="newPropertyValue">Property value</label>
-            <input type="text" class="form-control" id="newPropertyValue" ng-model="newProperty.value" placeholder="Enter property value">
-        </div>
-
-        <button type="submit" class="btn btn-link">Create property</button>
-
-        <button type="button" class="btn btn-link" ng-click="cancelCreating()">
-            <span class="glyphicon glyphicon-stop"></span>
-            Cancel creating
+<ui-view>
+    <div ng-if="propertiesListCtrl.getCurrentCategory()">
+        <button type="button" class="btn btn-link"
+                ui-sref="categories.properties.create">
+            <span class="glyphicon glyphicon-plus"></span>
+            Create property
         </button>
-    </form>
-</div>
-<div ng-if="shouldShowEditing()">
-    <h4>Editing {{ editedProperty.name }}</h4>
-    <form class="create-form" ng-show="isEditing" role="form" ng-submit="updateProperty(editedProperty)" novalidate>
-        <div class="form-group">
-            <label for="newPropertyName">Property name</label>
-            <input type="text" class="form-control" id="editedPropertyName" ng-model="editedProperty.name" placeholder="Enter property name">
-        </div>
-        <div class="form-group">
-            <label for="newPropertyValue">Property value</label>
-            <input type="text" class="form-control" id="editedPropertyValue" ng-model="editedProperty.value" placeholder="Enter property value">
-        </div>
 
-        <button type="submit" class="btn btn-link">Save</button>
-
-        <button type="button" class="btn btn-link" ng-click="cancelEditing()">
-            <span class="glyphicon glyphicon-stop"></span>
-            Cancel creating
-        </button>
-    </form>
-</div>
+    </div>
+</ui-view>

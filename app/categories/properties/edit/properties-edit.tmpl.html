@@ -1,20 +1,18 @@
-<div ng-if="shouldShowEditing()">
-    <h4>Editing {{ editedProperty.name }}</h4>
-    <form class="create-form" ng-show="isEditing" role="form" ng-submit="updateProperty(editedProperty)" novalidate>
-        <div class="form-group">
-            <label for="newPropertyName">Property name</label>
-            <input type="text" class="form-control" id="editedPropertyName" ng-model="editedProperty.name" placeholder="Enter property name">
-        </div>
-        <div class="form-group">
-            <label for="newPropertyValue">Property value</label>
-            <input type="text" class="form-control" id="editedPropertyValue" ng-model="editedProperty.value" placeholder="Enter property value">
-        </div>
+<h4>Editing {{ editPropertiesCtrl.property.name }}</h4>
+<form class="create-form" role="form" ng-submit="editPropertiesCtrl.updateProperty(editPropertiesCtrl.editedProperty)" novalidate>
+    <div class="form-group">
+        <label for="editedPropertyName">Property name</label>
+        <input type="text" class="form-control" id="editedPropertyName" ng-model="editPropertiesCtrl.editedProperty.name" placeholder="Enter property name">
+    </div>
+    <div class="form-group">
+        <label for="editedPropertyValue">Property value</label>
+        <input type="text" class="form-control" id="editedPropertyValue" ng-model="editPropertiesCtrl.editedProperty.value" placeholder="Enter property value">
+    </div>
 
-        <button type="submit" class="btn btn-link">Save</button>
+    <button type="submit" class="btn btn-link">Save</button>
 
-        <button type="button" class="btn btn-link" ng-click="cancelEditing()">
-            <span class="glyphicon glyphicon-stop"></span>
-            Cancel creating
-        </button>
-    </form>
-</div>
+    <button type="button" class="btn btn-link" ng-click="editPropertiesCtrl.cancelEditing()">
+        <span class="glyphicon glyphicon-stop"></span>
+        Cancel editing
+    </button>
+</form>

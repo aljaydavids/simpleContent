@@ -10,17 +10,22 @@ angular.module('categories', [
             url: '/',
             views: {
                 'categories@': {
-                    controller: 'CategoriesCtrl',
+                    controller: 'CategoriesListCtrl as categoriesListCtrl',
                     templateUrl: 'app/categories/categories.tmpl.html'
                 },
                 'properties@': {
-                    controller: 'PropertiesCtrl',
+                    controller: 'PropertiesListCtrl as propertiesListCtrl',
                         templateUrl: 'app/categories/properties/properties.tmpl.html'
                 }
             }
         })
 })
-.controller('CategoriesCtrl', function($scope) {
+.controller('CategoriesListCtrl', function CategoriesListCtrl(CategoriesModel) {
+    var categoriesListCtrl = this;
 
+    CategoriesModel.getCategories()
+        .then(function(categories) {
+            categoriesListCtrl.categories = categories;
+        });
 })
 ;

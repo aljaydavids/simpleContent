@@ -1,5 +1,5 @@
 <ul class="nav nav-sidebar">
-    <li ng-repeat="category in categories" ng-class="{'active':isCurrentCategory(category)}">
-        <a ng-click="setCurrentCategory(category)">{{ category.name}}</a>
+    <li ng-repeat="category in categoriesListCtrl.categories" ng-class="{'active':isCurrentCategory(category)}">
+        <a ui-sref="categories.properties({category:category.name})">{{ category.name}}</a>
     </li>
 </ul>
