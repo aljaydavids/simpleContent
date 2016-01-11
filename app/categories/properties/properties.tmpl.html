@@ -2,10 +2,9 @@
 <ul class="nav nav-pills nav-stacked">
     <li ng-class="{'active':isSelectedProperty(property.id)}"
         ng-repeat="property in propertiesListCtrl.properties | filter:{category_id:propertiesListCtrl.getCurrentCategoryId() }">
-
         <button type="button" class="close" ng-click="propertiesListCtrl.deleteProperty(property)">&times;</button>
         <button type="button" class="btn btn-link"
-                ui-sref="categories.properties.edit({propertyId:property.id})">
+                ui-sref="categories.properties.edit({propertyId:property.$id})">
             <span class="glyphicon glyphicon-pencil"></span>
         </button>
         <p>{{ property.name }}: {{ property.value }}</p>

@@ -1,11 +1,4 @@
-var app = angular.module('simpleContent', [
-    'ngAnimate',
-    'ui.router',
-    'categories',
-    'categories.properties'
-])
-
-app.config(function($stateProvider, $urlRouterProvider) {
+function config($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('simpleContent', {
             url: '',
@@ -13,4 +6,13 @@ app.config(function($stateProvider, $urlRouterProvider) {
         });
 
     $urlRouterProvider.otherwise('/');
-});
+}
+
+angular.module('simpleContent', [
+	'firebase',
+    'ui.router',
+    'categories',
+    'categories.properties'
+])
+.config(config)
+;

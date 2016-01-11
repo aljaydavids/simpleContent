@@ -5,7 +5,7 @@ angular.module('categories.properties', [
     'categories.properties.create',
     'categories.properties.edit',
     'common.models.categories',
-    'common.models.properties'
+    'common.models.properties-firebase'
 ])
 .config(function($stateProvider) {
     $stateProvider
@@ -19,15 +19,16 @@ angular.module('categories.properties', [
             }
         })
 })
-.controller('PropertiesListCtrl', function ($stateParams, PropertiesModel, CategoriesModel) {
+.controller('PropertiesListCtrl', function ($stateParams, PropertiesModel, CategoriesModel, $firebaseObject) {
     var propertiesListCtrl =  this;
 
     CategoriesModel.setCurrentCategory($stateParams.category);
 
-    PropertiesModel.getProperties()
-        .then(function(properties) {
-            propertiesListCtrl.properties = properties;
-        });
+    var properties = PropertiesModel.getProperties();
+
+    properties.$loaded(function(p) {
+        propertiesListCtrl.properties = properties;
+    });
 
     propertiesListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
     propertiesListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
